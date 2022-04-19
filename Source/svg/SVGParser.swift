@@ -53,10 +53,10 @@ open class SVGParser {
                           ofType type: String = "svg",
                           inDirectory directory: String? = nil,
                           fromBundle bundle: Bundle = Bundle.main) throws -> Node {
-        guard let fullpath = bundle.path(forResource: resource, ofType: type, inDirectory: directory) else {
-            throw SVGParserError.noSuchFile(path: "\(resource).\(type)")
-        }
-        return try SVGParser.parse(fullPath: fullpath)
+//        guard let fullpath = bundle.path(forResource: resource, ofType: type, inDirectory: directory) else {
+//            throw SVGParserError.noSuchFile(path: "\(resource).\(type)")
+//        }
+        return try SVGParser.parse(fullPath: resource)
     }
 
     /// Parse an SVG file identified by full file path
@@ -876,7 +876,7 @@ open class SVGParser {
         return dashes
     }
 
-	fileprivate func getMatrix(_ element: XMLHash.XMLElement, attribute: String) -> [Double] {
+    fileprivate func getMatrix(_ element: XMLHash.XMLElement, attribute: String) -> [Double] {
         var result = [Double]()
         if let values = element.allAttributes[attribute]?.text {
             let separatedValues = values.components(separatedBy: CharacterSet(charactersIn: " ,"))
